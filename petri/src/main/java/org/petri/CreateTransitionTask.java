@@ -59,6 +59,7 @@ public class CreateTransitionTask extends AbstractTask {
 		petriNet.getDefaultNodeTable().getRow(transition.getSUID()).set("internal id", "t"+Integer.toString(length));
 		petriNet.getDefaultNodeTable().getRow(transition.getSUID()).set("type", "Transition");
 		petriNet.getDefaultNodeTable().getRow(transition.getSUID()).set("name", name);
+		petriNet.getDefaultNodeTable().getRow(transition.getSUID()).set("id", name);
 		petriNet.getDefaultNodeTable().getRow(transition.getSUID()).set("fired", 0);
 		// Update view of newly created node
 		CyNetworkView [] cnvs = new CyNetworkView[1];
