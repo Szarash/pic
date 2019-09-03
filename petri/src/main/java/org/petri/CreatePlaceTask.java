@@ -56,15 +56,22 @@ public class CreatePlaceTask extends AbstractTask {
 			return;
 		}
 		int length = 0;
+		int currMax = 0;
 		for (CyNode n : petriNet.getNodeList()) {	// Get length of array for internal id
 			String ntype = (String) (petriNet.getDefaultNodeTable().getRow(n.getSUID()).get("type", String.class));
 			if (ntype.equals("Place")) {
-				length++;				
+				length++;
+				String intID = (String) (petriNet.getDefaultNodeTable().getRow(n.getSUID()).get("internal id", String.class)); 
+				String intIDprocess = intID.substring(1);
+				int intIDint = Integer.parseInt(intIDprocess);
+				if (intIDint > currMax) {
+					currMax = intIDint;
+				}
 			}
 		}
 		// Create the node and fill in its attributes
 		CyNode place = petriNet.addNode();
-		petriNet.getDefaultNodeTable().getRow(place.getSUID()).set("internal id", "p"+Integer.toString(length));
+		petriNet.getDefaultNodeTable().getRow(place.getSUID()).set("internal id", "p"+Integer.toString(currMax + 1));
 		petriNet.getDefaultNodeTable().getRow(place.getSUID()).set("type", "Place");
 		petriNet.getDefaultNodeTable().getRow(place.getSUID()).set("name", name);
 		petriNet.getDefaultNodeTable().getRow(place.getSUID()).set("id", name);
