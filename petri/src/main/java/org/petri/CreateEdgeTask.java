@@ -82,9 +82,18 @@ public class CreateEdgeTask extends AbstractTask {
 			JOptionPane.showMessageDialog(f, msg);
 			return;
 		}
+		int currMax = 0;
+		for (CyEdge e : petriNet.getEdgeList()) {
+			String intID = (String) (petriNet.getDefaultEdgeTable().getRow(e.getSUID()).get("internal id", String.class)); 
+			String intIDprocess = intID.substring(1);
+			int intIDint = Integer.parseInt(intIDprocess);
+			if (intIDint > currMax) {
+				currMax = intIDint;
+			}
+		}
 		// Create new edge and fill ins its attributes
 		CyEdge edge = petriNet.addEdge(source, target, true);
-		petriNet.getDefaultEdgeTable().getRow(edge.getSUID()).set("internal id", "e"+Integer.toString(petriNet.getEdgeCount()-1));
+		petriNet.getDefaultEdgeTable().getRow(edge.getSUID()).set("internal id", "e"+Integer.toString(currMax + 1));
 		petriNet.getDefaultEdgeTable().getRow(edge.getSUID()).set("weight", Integer.parseInt(weight));
 		String sourcename = petriNet.getDefaultNodeTable().getRow(source.getSUID()).get("name", String.class);
 		String targetname = petriNet.getDefaultNodeTable().getRow(target.getSUID()).get("name", String.class);
