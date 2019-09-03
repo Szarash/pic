@@ -67,6 +67,7 @@ public class CreatePlaceTask extends AbstractTask {
 		petriNet.getDefaultNodeTable().getRow(place.getSUID()).set("internal id", "p"+Integer.toString(length));
 		petriNet.getDefaultNodeTable().getRow(place.getSUID()).set("type", "Place");
 		petriNet.getDefaultNodeTable().getRow(place.getSUID()).set("name", name);
+		petriNet.getDefaultNodeTable().getRow(place.getSUID()).set("id", name);
 		petriNet.getDefaultNodeTable().getRow(place.getSUID()).set("initial tokens", Integer.parseInt(tokens));
 		petriNet.getDefaultNodeTable().getRow(place.getSUID()).set("tokens", Integer.parseInt(tokens));
 		// Update view of newly created node
