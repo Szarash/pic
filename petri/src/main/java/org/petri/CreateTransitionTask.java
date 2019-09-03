@@ -48,15 +48,22 @@ public class CreateTransitionTask extends AbstractTask {
 			return;
 		}
 		int length = 0;
+		int currMax = 0;
 		for (CyNode n : petriNet.getNodeList()) {	// Get length of array for internal id
 			String ntype = (String) (petriNet.getDefaultNodeTable().getRow(n.getSUID()).get("type", String.class));
 			if (ntype.equals("Transition")) {
-				length++;				
+				length++;	
+				String intID = (String) (petriNet.getDefaultNodeTable().getRow(n.getSUID()).get("internal id", String.class)); 
+				String intIDprocess = intID.substring(1);
+				int intIDint = Integer.parseInt(intIDprocess);
+				if (intIDint > currMax) {
+					currMax = intIDint;
+				}
 			}
 		}
 		// Create new node and fill in its attributes
 		CyNode transition = petriNet.addNode();
-		petriNet.getDefaultNodeTable().getRow(transition.getSUID()).set("internal id", "t"+Integer.toString(length));
+		petriNet.getDefaultNodeTable().getRow(transition.getSUID()).set("internal id", "t"+Integer.toString(currMax + 1));
 		petriNet.getDefaultNodeTable().getRow(transition.getSUID()).set("type", "Transition");
 		petriNet.getDefaultNodeTable().getRow(transition.getSUID()).set("name", name);
 		petriNet.getDefaultNodeTable().getRow(transition.getSUID()).set("id", name);
