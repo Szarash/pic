@@ -16,7 +16,7 @@
 	<groupId>org</groupId>
 	<artifactId>PIC</artifactId>
 	<packaging>bundle</packaging>
-	<version>1.0</version>
+	<version>1.1</version>
 	
 	<name>Petri Net Implementation for Cytoscape</name>
 
