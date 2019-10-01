@@ -20,7 +20,7 @@ Features include:
 Installation:
 
 1. Download the package and unpack it.
-2. Move the PIC-1.0.jar into your \Users\YourUsername\CytoscapeConfiguration\3\apps\installed
+2. Move the PIC-x.x.jar into your \Users\YourUsername\CytoscapeConfiguration\3\apps\installed
 3. Start Cytoscape. PIC will open automatically as a new tab in your controlbar.
 
 Instructions:
